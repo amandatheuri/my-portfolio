@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Project Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="demo-container">
+    <a href="index.html" class="btn">⬅ Back</a>
+    <h1 id="demo-title"></h1>
+    <p id="demo-desc"></p>
+    <div class="screenshot-carousel" id="demo-carousel"></div>
+  </div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const project = params.get("project");
+
+// project data
+const projects = {
+  EcoPamoja:{
+    title:"Eco Pamoja",
+    desc:"Gamified eco challenges app",
+    images:["assets/eco1.png","assets/ecopamoja-home.jpeg"]
+  },
+  BinCollect:{
+    title:"BinCollect",
+    desc:"Rewards-based waste disposal app",
+    images:["assets/bin1.png","assets/bincollect-home.jpeg"]
+  },
+  TheoryInsurance:{
+    title:"Theory Insurance",
+    desc:"Corporate insurance website",
+    images:["assets/theory1.png","assets/theory-screenshot.png"]
+  }
+};
+
+if(projects[project]){
+  const p = projects[project];
+  document.getElementById("demo-title").innerText = p.title;
+  document.getElementById("demo-desc").innerText = p.desc;
+  const carousel = document.getElementById("demo-carousel");
+  p.images.forEach(src=>{
+    const img = document.createElement("img");
+    img.src = src; img.className="demo-img";
+    carousel.appendChild(img);
+  });
+}
+</script>
+</body>
+</html>
